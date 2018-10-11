@@ -10,6 +10,8 @@
 				font-family: "SF UI Display", "SFUIDisplay", -apple-system, "Helvetica", sans-serif;
 				font-weight: 600;
 				font-size: 80px;
+				text-align: center;
+				width: 1vw;
 				color: transparent;
 				-webkit-background-clip: text;
 				-webkit-text-stroke-width: 2px;
@@ -58,8 +60,7 @@
 			}
 
 			function update() {
-				stamp.innerText = seconds;
-				//stamp.innerText = time();
+				stamp.innerText = time();
 
 				const bat = Math.abs(scale(battery * 100 || 0, 19, 82, 0, 100));
 				const color = battery < 0.21 ? "#f44336" : charging ? "#4caf50" : "white";
