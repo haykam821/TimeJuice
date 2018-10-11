@@ -1,0 +1,8 @@
+Package: io.github.haykam821.timejuice
+Name: TimeJuice
+Version: 1.0.0
+Section: Widgets
+Architecture: iphoneos-arm
+Description: A lockscreen widget combining battery and time into one.
+Author: haykam821
+Sponsor: https://github.com/haykam821
