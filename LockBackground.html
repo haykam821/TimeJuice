@@ -1,0 +1,70 @@
+<html>
+
+	<head>
+		<meta name="viewport" content="initial-scale=1">
+		<meta charset="UTF-8">
+		<meta name="author" content="haykam821">
+
+		<style>
+			#stamp {
+				font-family: SF UI Display;
+				font-weight: 600;
+				font-size: 80px;
+				color: transparent;
+				-webkit-background-clip: text;
+				-webkit-text-stroke-width: 1px;
+				-webkit-text-stroke-color: black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<span id="stamp">
+			10:09
+		</span>
+
+		<script>
+			const stamp = document.getElementById("stamp");
+
+			function scale(num, min, max) {
+				return (max - min) * num / 100 + min;
+			}
+
+			let battery = 0;
+			let charging = false;
+
+			function update() {
+				const date = new Date();
+				stamp.innerText = date.getHours() % 12 + ":" + date.getMinutes().toString().padStart(2, 0) + ":" +
+					date.getSeconds().toString().padStart(2, 0);
+
+				const bat = Math.abs(scale(battery * 100 || 0, 19, 80, 0, 100));
+				const color = charging ? battery > 0.20 ? "#4caf50" : "#f44336" : "white";
+
+				stamp.style.backgroundImage = `linear-gradient(to top, ${color}, ${color} ${bat}%, black ${bat}%)`;
+			}
+
+			setInterval(update, 80);
+			update();
+
+			function updateVars(batMan) {
+				// Nanananana set var!
+				battery = batMan.level || battery;
+				charging = batMan.charging || charging;
+				update();
+			}
+
+			navigator.getBattery().then(batMan => {
+				updateVars(batMan);
+
+				batMan.addEventListener("chargingchange", () => {
+					updateVars(batMan);
+				}, false);
+				batMan.addEventListener("levelchange", () => {
+					updateVars(batMan);
+				}, false);
+			});
+		</script>
+	</body>
+
+</html>
