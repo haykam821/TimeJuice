@@ -7,4 +7,4 @@ Description: A lockscreen widget combining battery and time into one.
 Author: haykam821
 Sponsor: https://github.com/haykam821
 Maintainer: haykam821@gmail.com
-Depends: com.junesiphone.xeninfo
+Depends: com.junesiphone.xeninfo (>= 1.0)
