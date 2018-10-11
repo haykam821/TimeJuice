@@ -42,10 +42,24 @@
 				}
 			}
 
+			function padNum(num = 0) {
+				return num.toString().padStart(2, 0);
+			}
+
+			function time(date) {
+				const source = date || new Date();
+
+				let string = source.getHours() % 12 + ":" + padNum(source.getMinutes());
+				if (seconds) {
+					string += ":" + padNum(source.getSeconds());
+				}
+
+				return string;
+			}
+
 			function update() {
-				const date = new Date();
-				stamp.innerText = date.getHours() % 12 + ":" + date.getMinutes().toString().padStart(2, 0) + ":" +
-					date.getSeconds().toString().padStart(2, 0);
+				stamp.innerText = seconds;
+				//stamp.innerText = time();
 
 				const bat = Math.abs(scale(battery * 100 || 0, 19, 82, 0, 100));
 				const color = battery < 0.21 ? "#f44336" : charging ? "#4caf50" : "white";
